@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BRUM BRUM - Noleggio Auto Premium</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="nav.css">
+  <link rel="stylesheet" href="noleggio.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap&text=homeblgwrkaut" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/js/lightslider.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightslider/1.1.6/css/lightslider.min.css" />
+  <link rel="icon" href="sedan.png">
+  <style>
+
+    button.btn:hover {
+      background-color: #800F20;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    /* CAR SECTIONS */
+    .section__header1 {
+      font-size: 3.25rem;
+      font-weight: 700;
+      font-family: var(--header-font);
+      color: var(--light-text);
+      letter-spacing: -5px;
+      line-height: 4.25rem;
+      background-color: #A4152C;
+      display: block; 
+      text-align: center;
+      margin: 0 auto;
+      padding: 1.5rem 1rem;
+      position: relative;
+      z-index: 10;
+    }
+    .lSSlideOuter {
+    background-color: #A4152C;
+}
+    .container {
+      width: 100%;
+      background: #A4152C;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding: 1rem 0;
+      position: relative;
+    }
+    
+    .container::-webkit-scrollbar {
+      display: none;
+    }
+    
+    .box {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      width: 350px;
+      height: 610px;
+      background: var(--dark-bg);
+      border-radius: 10px;
+      box-shadow: 2px 10px 12px rgba(0, 0, 0, 0.5);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      box-sizing: border-box;
+      margin: 20px 15px;
+      transition: all ease 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .box:hover {
+      background-color: var(--darker-bg);
+      transform: scale(1.03);
+      color: #fff;
+    }
+    
+    .box:hover .marvel {
+      color: var(--light-text);
+    }
+    
+    .marvel {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 1rem 0;
+      text-align: center;
+      font-family: 'Orbitron', sans-serif;
+      padding: 0 1rem;
+      transition: color 0.3s ease;
+    }
+   
+    
+    .model {
+      width: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    
+    .box:hover .model {
+      transform: scale(1.05);
+    }
+    
+    
+    /* RESPONSIVE DESIGN */
+    @media (max-width: 992px) {
+      .box {
+        width: 300px;
+        height: 550px;
+      }
+      
+      
+    }
+    
+    @media (max-width: 768px) {
+      .select__form {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      
+      .select__btns {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .header__container {
+        padding: 2rem 1rem;
+      }
+      
+      form {
+        flex-direction: column;
+      }
+      
+      .input__group {
+        width: 100%;
+      }
+      
+      .box {
+        width: 280px;
+        height: 520px;
+        margin: 20px 10px;
+        margin-left: 50px;
+      }
+      
+      .section__header1 {
+        padding: 1rem;
+        font-size: 35px;
+      }
+      
+      .swiper {
+        height: 400px;
+      }
+    }
+  </style>
+</head>
+<a>
+  <nav>
+    <div class="nav-wrapper">
+      <button class="hamburger" id="hamburger">&#9776;</button>
+      <ul class="nav-links" id="navLinks">
+        <li class="li"><a id="link" href="index.html">HOME</a></li>
+        <li class="li"><a id="link" class="active"  href="noleggio.html">noleggio</a></li>
+        <li class="li"><a id="link" href="signup.html" target="blank" >REGISTRATI</a></li>
+        <li class="li"><a id="link" href="login.html">LOG IN</a></li>
+      </ul>
+    </div>
+  </nav>
+
+   <div class="header__container" id="home">
+        <h1>NOLEGGIO MACCHINE PREMIUM</h1>
+        <form action="#macchine">
+          <div class="input__group">
+            <label for="location">Punto di ritiro e riconsegna</label>
+            <input
+              type="text"
+              name="location"
+              id="location"
+              placeholder="MILANO, ROMA"
+            />
+          </div>
+          <div class="input__group">
+            <label for="start">Partenza</label>
+            <input
+              type="text"
+              name="start"
+              id="start"
+              placeholder="Lug 16, 10:00 AM"
+            />
+          </div>
+          <div class="input__group">
+            <label for="stop">Stop</label>
+            <input
+              type="text"
+              name="stop"
+              id="stop"
+              placeholder="Dec 18, 10:00 AM"
+            />
+          </div>
+          <a href="rent.html" class="btn"><i class="ri-search-line"></i></a>
+
+        </form>
+        <img src="https://webdesignmastery.github.io/Rental_07-09-24/assets/header.png" alt="header"/>
+      </div>
+    </header>
+
+  <!-- BERLINE PREMIUM SECTION -->
+  <h2 class="section__header1" id="macchine">BERLINE PREMIUM</h2>
+  <a href="rent.html" style="color:black;">
+  <ul class="container" id="autoWidth1">
+    <li class="item-a">
+      <div class="box">
+        <p class="marvel">AUDI RS6 AVANT</p>
+        <img
+          src="https://i.pinimg.com/736x/e7/14/91/e71491f76222addf857a8d95b3deff52.jpg"
+          alt="Audi RS6 Avant"
+          class="model"
+        />
+      </div>
+    </li>
+    <li class="item-a">
+      <div class="box">
+        <p class="marvel">AUDI A6 C7</p>
+        <img
+          src="https://i.pinimg.com/736x/a1/46/9f/a1469f8cfb39492706f5c6b663e10e1f.jpg"
+          alt="Audi A6 C7"
+          class="model"
+        />
+      </div>
+    </li>
+    <li class="item-a">
+      <div class="box">
+        <p class="marvel">BMW M5 COMPETITION</p>
+        <img
+          src="https://i.pinimg.com/736x/c2/71/e1/c271e106e7ae2fc5d9a9e1fc75fcc303.jpg"
+          alt="BMW M5 Competition"
+          class="model"
+        />
+      </div>
+    </li>
+    <li class="item-a">
+      <div class="box">
+        <p class="marvel">BMW M5 TOURING</p>
+        <img
+          src="https://i.pinimg.com/736x/b2/1e/34/b21e343016e1b7e7c333d7b70ed46ad5.jpg"
+          alt="BMW M5 Touring"
+          class="model"
+        />
+      </div>
+    </li>
+    <li class="item-a">
+      <div class="box">
+        <p class="marvel">MERCEDES E400</p>
+        <img
+          src="https://wallpapercave.com/wp/wp12105157.jpg"
+          alt="Mercedes E400"
+          class="model"
+        />
+      </div>
+    </li>
+    <li class="item-a">
+      <div class="box">
+        <p class="marvel">PORCHE TAYCAN 4S CROSS TURISMO</p>
+        <img
+          src="https://i.pinimg.com/736x/4b/d8/74/4bd87472cced2ce69e702b8c6e1ba1ad.jpg"
+          alt="Porsche Taycan"
+          class="model"
+        />
+      </div>
+    </li>
+  </ul>
+  </a>
+  <!-- SUV DI LUSSO SECTION -->
+  <h2 class="section__header1" id="suv">SUV DI LUSSO</h2>
+  <a href="rent.html" style="color:black;">
+  <ul class="container" id="autoWidth2">
+    
+    <li class="item-a">
+      <div class="box">
+        <p class="marvel">MERCEDES G63 AMG</p>
+        <img
+          src="https://i.pinimg.com/736x/60/e6/99/60e699872c678d9d4fdc1928fd1a834e.jpg"
+          alt="Mercedes G63 AMG"
+          class="model"
+        />
+      </div>
+    </li>
+    <li class="item-a">
+      <div class="box">
+        <p class="marvel">BMW X7</p>
+        <img
+          src="https://i.pinimg.com/736x/66/79/c1/6679c1f9393cdae22078520c6f112c49.jpg"
+          alt="BMW X7"
+          class="model"
+        />
+      </div><li class="item-a">
+      <div class="box">
+        <p class="marvel">RANGE ROVER SPORT</p>
+        <img
+          src="https://i.pinimg.com/736x/5a/57/a6/5a57a67288e404d1639d44ad627be5f2.jpg"
+          alt="Range Rover Sport"
+          class="model"
+        />
+      </div>
+    </li>
+    </li>
+    <li class="item-a">
+      <div class="box">
+        <p class="marvel">AUDI Q8</p>
+        <img
+          src="https://i.pinimg.com/736x/44/ec/fd/44ecfdbb2755a0eba1ccf12ebfd4a561.jpg"
+          alt="Audi Q8"
+          class="model"
+        />
+      </div>
+    </li>
+    <li class="item-a">
+      <div class="box">
+        <p class="marvel">PORSCHE CAYENNE</p>
+        <img
+          src="https://i.pinimg.com/736x/7d/ed/be/7dedbe8d541741b7ec759bcdd57ced59.jpg"
+          alt="Porsche Cayenne"
+          class="model"
+        />
+      </div>
+    </li>
+    <li class="item-a">
+      <div class="box">
+        <p class="marvel">LAMBORGHINI URUS</p>
+        <img
+          src="https://i.pinimg.com/736x/49/37/ef/4937ef83655e3c18a295e873cec94332.jpg"
+          alt="Lamborghini Urus"
+          class="model"
+        />
+      </div>
+    </li>
+  </ul>
+  </a>
+  <!-- SUPERCAR SECTION -->
+  <h2 class="section__header1" id="supercar">SUPERCAR</h2>
+  <a href="rent.html" style="color:black;">
+  <ul class="container" id="autoWidth3">
+    <li class="item-a">
+      <div class="box">
+        <p class="marvel">BUGATTI CHIRON</p>
+        <img
+          src="https://i.pinimg.com/736x/b3/5c/ee/b35cee2e6549295e27b7b87f37f962f2.jpg"
+          alt="Bugatti Chiron"
+          class="model"
+        />
+      </div>
+    </li>
+    <li class="item-a">
+      <div class="box">
+        <p class="marvel">FERRARI 488 GTB</p>
+        <img
+          src="https://i.pinimg.com/736x/ab/ff/67/abff67d018fccab33ceb665dfff9f69f.jpg"
+          alt="Ferrari 488 GTB"
+          class="model"
+        />
+      </div>
+    </li>
+    <li class="item-a">
+      <div class="box">
+        <p class="marvel">PORSCHE 911 TURBO S</p>
+        <img
+          src="https://i.pinimg.com/736x/dd/01/19/dd0119c3b8d2cac604a454de7d7dc130.jpg"
+          alt="Porsche 911 Turbo S"
+          class="model"
+        />
+      </div>
+    </li>
+    <li class="item-a">
+      <div class="box">
+        <p class="marvel">MCLAREN 720S</p>
+        <img
+          src="https://i.pinimg.com/736x/19/e2/11/19e211e4d6ff09cd203d809033304937.jpg"
+          alt="McLaren 720S"
+          class="model"
+        />
+      </div>
+    </li>
+    <li class="item-a">
+      <div class="box">
+        <p class="marvel">ASTON MARTIN DB11</p>
+        <img
+          src="https://i.pinimg.com/736x/21/b9/e8/21b9e8e9d27c4b59a8b31ba5718d5056.jpg"
+          alt="Aston Martin DB11"
+          class="model"
+        />
+      </div>
+    </li>
+    <li class="item-a">
+      <div class="box">
+        <p class="marvel">LAMBORGHINI AVENTADOR</p>
+        <img
+          src="https://i.pinimg.com/736x/06/8d/86/068d8660d361ad46e4889d57cdfaa87f.jpg"
+          alt="Lamborghini Aventador"
+          class="model"
+        />
+      </div>
+    </li>
+  </ul>
+  </a>
+  <!-- ELETTRICHE SPORTIVE SECTION -->
+  <h2 class="section__header1" id="elettrica">ELETTRICHE SPORTIVE</h2>
+  <a href="rent.html" style="color:black;">
+  <ul class="container" id="autoWidth4">
+    <li class="item-a">
+      <div class="box">
+        <p class="marvel">TESLA ROADSTER</p>
+        <img
+          src="https://i.pinimg.com/736x/fb/03/a4/fb03a4565723a2127f0d726bedb09bce.jpg"
+          alt="Tesla Roadster"
+          class="model"
+        />
+      </div>
+    </li>
+    <li class="item-a">
+      <div class="box">
+        <p class="marvel">RIMAC NEVERA</p>
+        <img
+          src="https://i.pinimg.com/736x/71/f5/1d/71f51d8e575bfcb16ff13ba7f988f8c9.jpg"
+          alt="Rimac Nevera"
+          class="model"
+        />
+      </div>
+    </li>
+    <li class="item-a">
+      <div class="box">
+        <p class="marvel">LOTUS ELETRE</p>
+        <img
+          src="https://i.pinimg.com/736x/bb/a8/c0/bba8c0a8b725b3c8d090b8404cd4466b.jpg"
+          alt="Lotus Eletre"
+          class="model"
+        />
+      </div>
+    </li>
+    <li class="item-a">
+      <div class="box">
+        <p class="marvel">DRAKO GTE</p>
+        <img
+          src="https://i.pinimg.com/736x/44/7c/2d/447c2df00c8e03a954ca86223722dd2c.jpg"
+          alt="Drako GTE"
+          class="model"
+        />
+      </div>
+    </li>
+    <li class="item-a">
+      <div class="box">
+        <p class="marvel">AUDI RS E-TRON GT</p>
+        <img
+          src="https://i.pinimg.com/736x/b6/d0/e3/b6d0e31823c1eca6532b4e8c0d4cc771.jpg"
+          alt="Audi RS e-tron GT"
+          class="model"
+        />
+      </div>
+    </li>
+    <li class="item-a">
+      <div class="box">
+        <p class="marvel">LOTUS EVJA</p>
+        <img
+          src="https://i.pinimg.com/736x/c2/7e/7f/c27e7fd45a46381ffa5a6e3860b7e616.jpg"
+          alt="Lotus Evija"
+          class="model"
+        />
+      </div>
+    </li>
+  </ul>
+</a>
+  <!-- LOCATION SECTION -->
+  <section class="section__container location__container" id="rent">
+      <div class="location__image">
+        <img src="https://webdesignmastery.github.io/Rental_07-09-24/assets/location.png" alt="location" />
+      </div>
+      <div class="location__content">
+        <h2 class="section__header">TROVA UN'AUTO VICINO A TE</h2>
+        <p>
+          Scopri l'auto perfetta su misura per le tue esigenze, ovunque tu sia.
+          La nostra funzione "Trova un'auto vicino a te" ti permette di cercare e 
+          scegliere facilmente tra la nostra flotta di veicoli premium disponibili nelle tue vicinanze. 
+          Che tu desideri una berlina di lusso, un SUV spazioso o un'elegante cabrio, 
+          il nostro strumento intuitivo ti aiuterà a trovare l'auto ideale per il tuo viaggio.
+        </p>
+        <div class="location__btn">
+          <button class="btn"><a href="rent.html" style="color:#fff;">TROVA</a></button>
+        </div>
+      </div>
+    </section>
+
+
+
+  <!-- CAR SELECTION SECTION -->
+      <section class="select__container" id="ride">
+      <h2 class="section__header">SCEGLI LA TUA MACCHINA DA SOGNO</h2>
+      <a href="rent.html" style="color:black;">
+      <!-- Slider main container -->
+      <div class="swiper">
+        <!-- Additional required wrapper -->
+        <div class="swiper-wrapper">
+          <!-- Slides -->
+          <div class="swiper-slide">
+            <div class="select__card">
+              <img src="https://www.pngplay.com/wp-content/uploads/13/Audi-A5-PNG-Photo-Image.png" style="transform: scaleX(-1);"alt="select" />
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="select__card">
+              <img src="https://webdesignmastery.github.io/Rental_07-09-24/assets/select-4.png" alt="select" />
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="select__card">
+              <img src="https://webdesignmastery.github.io/Rental_07-09-24/assets/select-3.png" alt="select" />
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="select__card">
+              <img src="https://di-shared-assets.dealerinspire.com/legacy/rackspace/ldm-images/2020-BMW-X7-Tanzanite-Blue-Metallic-Color.png" alt="select" />
+              
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="select__card">
+              <img src="https://pngimg.com/d/land_rover_PNG20.png" alt="select" />
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <form action="/" class="select__form">
+        <div class="select__price">
+          <span><i class="ri-price-tag-3-line"></i></span>
+          <div><span id="select-price">500€</span> /day</div>
+        </div>
+      </a>
+        <div class="select__btns">
+          <button class="btn"><a href="info.html" style="color:#fff;">View Details</a></button>
+          <button class="btn"><a href="rent.html" style="color:#fff;" >Rent Now</a></button>
+        </div>
+      </form>
+     <section class="banner__container">
+      <a href="rent.html" style="color:black;">
+      <div class="banner__wrapper">
+        <img src="https://webdesignmastery.github.io/Rental_07-09-24/assets/banner-1.png" alt="banner" />
+        <img src="https://webdesignmastery.github.io/Rental_07-09-24/assets/banner-3.png" alt="banner" />
+        <img src="https://webdesignmastery.github.io/Rental_07-09-24/assets/banner-5.png" alt="banner" />
+        <img src="https://webdesignmastery.github.io/Rental_07-09-24/assets/banner-6.png" alt="banner" />
+        <img src="https://webdesignmastery.github.io/Rental_07-09-24/assets/banner-8.png" alt="banner" />
+        <img src="https://webdesignmastery.github.io/Rental_07-09-24/assets/banner-2.png" alt="banner" />
+        <img src="https://webdesignmastery.github.io/Rental_07-09-24/assets/banner-7.png" alt="banner" />
+        <img src="https://webdesignmastery.github.io/Rental_07-09-24/assets/banner-10.png" alt="banner" />
+        <img src="https://webdesignmastery.github.io/Rental_07-09-24/assets/banner-9.png" alt="banner" />
+        <img src="https://webdesignmastery.github.io/Rental_07-09-24/assets/banner-4.png" alt="banner" />
+      </div></a>
+    </section>
+
+  <section class="download">
+      <div class="section__container download__container">
+        <div class="download__content">
+          <h2 class="section__header">PREMIUM CAR RENTAL</h2>
+          <br>
+          <br>
+          <br>
+        </div>
+        <div class="download__image">
+          <img src="https://webdesignmastery.github.io/Rental_07-09-24/assets/download.png" alt="download" />
+        </div>
+      </div>
+    </section>
+    <footer>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    </footer>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

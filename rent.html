@@ -1,0 +1,1056 @@
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Noleggio Auto - BRUM BRUM</title>
+
+  <link rel="stylesheet" href="nav.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap&text=homeblgwrkaut" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+  <link rel="icon" href="sedan.png" />
+  <style>
+    /* Stile base e per il form */
+    fieldset {
+      border: 2px solid #00dfc4;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 30px;
+    }
+
+    legend {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #00dfc4;
+      padding: 0 10px;
+    }
+
+    fieldset .inputBox {
+      width: 30%; /* tre campi affiancati */
+      min-width: 180px; /* larghezza minima per non stringere troppo */
+      margin-right: 3%; /* spazio tra inputBox */
+      display: inline-block;
+      position: relative;
+      vertical-align: top;
+    }
+
+    fieldset .inputBox:last-child {
+      margin-right: 0;
+    }
+
+    /* Per assicurare che l'input e lo span non si sovrappongano */
+    fieldset .inputBox input,
+    fieldset .inputBox select {
+      width: 100%;
+      padding: 12px 10px 12px 48px; /* lascia spazio per icona */
+      border-radius: 25px;
+      border: 1px solid rgba(0,0,0,0.1);
+      background: #223243;
+      color: #fff;
+      font-size: 1em;
+      outline: none;
+    }
+
+    fieldset .inputBox span {
+      left: 15px; /* sposta lo span più a sinistra per evitare sovrapposizione */
+      padding-left: 0;
+      width: auto;
+      pointer-events: none;
+      color: rgba(255,255,255,0.5);
+      position: absolute;
+      text-align: center;
+      font-size: 0.9em;
+      transition: 0.3s;
+    }
+
+    /* Icona */
+    fieldset .inputBox i {
+      position: absolute;
+      top: 15px;
+      left: 16px;
+      color: #00dfc4;
+      border-right: 1px solid #00dfc4;
+      padding-right: 8px;
+      width: 25px;
+    }
+
+    /* Animazioni label al focus o valore valido */
+    fieldset .inputBox input:focus ~ span,
+    fieldset .inputBox input:not(:placeholder-shown) ~ span,
+    fieldset .inputBox select:focus ~ span,
+    fieldset .inputBox select:not([value=""]) ~ span {
+      transform: translateX(25px) translateY(-7px);
+      font-size: 0.6em;
+      background: #223243;
+      border-radius: 10px;
+      color: #00dfc4;
+      padding: 0 8px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Orbitron", sans-serif;
+      scroll-behavior: smooth;
+    }
+    body {
+      background: #223243;
+      min-height: 100vh;
+      color: #fff;
+    }
+    main {
+      max-width: 1100px;
+      margin: 100px auto 40px;
+      padding: 20px;
+      background: #223243;
+      border-radius: 20px;
+      box-shadow:
+        -5px -5px 15px rgba(255, 255, 255, 0.1),
+        5px 5px 15px rgba(0, 0, 0, 0.35),
+        inset -5px -5px 15px rgba(255, 255, 255, 0.1),
+        inset 5px 5px 15px rgba(0, 0, 0, 0.35);
+    }
+    h1 {
+      font-weight: normal;
+      font-size: 3rem;
+      text-align: center;
+      margin-bottom: 30px;
+      color: #00dfc4;
+      letter-spacing: 0.15em;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+    fieldset {
+      border: 2px solid #00dfc4;
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 30px;
+    }
+    legend {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #00dfc4;
+      padding: 0 10px;
+    }
+
+    /* Gruppo input */
+    .inputBox {
+      position: relative;
+      margin-bottom: 15px;
+    }
+    .inputBox input,
+    .inputBox select,
+    .inputBox textarea {
+      width: 100%;
+      padding: 12px 12px 12px 48px;
+      background: #223243;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      color: #fff;
+      font-weight: 300;
+      font-size: 1em;
+      border-radius: 25px;
+      box-shadow:
+        -5px -5px 15px rgba(255, 255, 255, 0.1),
+        5px 5px 15px rgba(0, 0, 0, 0.35);
+      outline: none;
+      transition: 0.5s;
+      appearance: none;
+      resize: none;
+    }
+    .inputBox select {
+      padding-left: 15px;
+    }
+    .inputBox textarea {
+      padding-left: 15px;
+      height: 100px;
+      border-radius: 15px;
+    }
+    .inputBox span {
+      position: absolute;
+      left: 0;
+      padding: 13px 10px 12px 48px;
+      pointer-events: none;
+      font-size: 1em;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.5);
+      letter-spacing: 0.05em;
+      transition: 0.5s;
+    }
+    .inputBox input:focus ~ span,
+    .inputBox input:valid ~ span,
+    .inputBox select:focus ~ span,
+    .inputBox select:valid ~ span,
+    .inputBox textarea:focus ~ span,
+    .inputBox textarea:valid ~ span {
+      color: #00dfc4;
+      background: #223243;
+      transform: translateX(25px) translateY(-7px);
+      font-size: 0.6em;
+      padding: 0 8px;
+      border-radius: 10px;
+      letter-spacing: 0.1em;
+    }
+    .inputBox input:focus,
+    .inputBox input:valid,
+    .inputBox select:focus,
+    .inputBox select:valid,
+    .inputBox textarea:focus,
+    .inputBox textarea:valid {
+      border: 1px solid #00dfc4;
+    }
+    .inputBox i {
+      position: absolute;
+      top: 15px;
+      left: 16px;
+      width: 25px;
+      padding-right: 8px;
+      color: #00dfc4;
+      border-right: 1px solid #00dfc4;
+      pointer-events: none;
+    }
+
+    /* Bottoni */
+    input[type="submit"] {
+      background: #00dfc4;
+      color: #223243;
+      font-weight: 500;
+      cursor: pointer;
+      box-shadow:
+        -5px -5px 15px rgba(255, 255, 255, 0.1),
+        5px 5px 15px rgba(0, 0, 0, 0.35),
+        inset -5px -5px 15px rgba(255, 255, 255, 0.1),
+        inset 5px 5px 15px rgba(0, 0, 0, 0.35);
+      border-radius: 25px;
+      padding: 15px 0;
+      font-size: 1.2em;
+      letter-spacing: 0.1em;
+      transition: background 0.3s ease;
+      border: none;
+    }
+    input[type="submit"]:hover {
+      background: #00bfa1;
+    }
+
+    /* Griglia auto per selezione - MODIFICATO */
+    .cars-categories {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 15px;
+    }
+    .car-card {
+      position: relative;
+      background: #182536;
+      border-radius: 15px;
+      box-shadow:
+        -5px -5px 15px rgba(255, 255, 255, 0.1),
+        5px 5px 15px rgba(0, 0, 0, 0.35);
+      padding: 15px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all 0.3s ease;
+      text-align: center;
+      color: #00dfc4;
+    }
+    .car-card:hover {
+      border-color: rgba(0, 223, 196, 0.5);
+      transform: translateY(-5px);
+    }
+    .car-card.selected {
+      border-color: #00dfc4;
+      background: rgba(0, 223, 196, 0.1);
+      box-shadow: 0 0 15px rgba(0, 223, 196, 0.3);
+    }
+    .car-card img {
+      max-width: 100%;
+      border-radius: 10px;
+      user-select: none;
+      pointer-events: none;
+      margin-bottom: 10px;
+    }
+    .car-card label {
+      display: block;
+      font-weight: 600;
+      font-size: 1.1em;
+      cursor: pointer;
+      color: #00dfc4;
+      user-select: none;
+      transition: color 0.3s ease;
+      position: relative;
+      padding-right: 35px;
+    }
+    .car-card.selected label {
+      color: #fff;
+    }
+    
+    /* Stili per i checkbox personalizzati */
+    .car-card input[type="checkbox"] {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+    }
+
+    /* Checkbox personalizzato */
+    .car-card .custom-checkbox {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 25px;
+      height: 25px;
+      background-color: #223243;
+      border: 2px solid #00dfc4;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+
+    /* Effetto hover sul checkbox */
+    .car-card:hover .custom-checkbox {
+      background-color: rgba(0, 223, 196, 0.1);
+      box-shadow: 0 0 10px rgba(0, 223, 196, 0.3);
+    }
+
+    /* Stile quando selezionato */
+    .car-card input[type="checkbox"]:checked ~ .custom-checkbox {
+      background-color: #00dfc4;
+    }
+
+    /* Simbolo di check */
+    .car-card .custom-checkbox:after {
+      content: "✓";
+      position: absolute;
+      display: none;
+      color: #223243;
+      font-weight: bold;
+      font-size: 14px;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* Mostra il check quando selezionato */
+    .car-card input[type="checkbox"]:checked ~ .custom-checkbox:after {
+      display: block;
+    }
+
+    /* Animazione quando si seleziona */
+    .car-card input[type="checkbox"]:checked ~ .custom-checkbox {
+      animation: pulse 0.5s ease;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    /* Sezione per le categorie */
+    .category-section {
+      margin-bottom: 50px;
+    }
+    .category-section h2 {
+      font-size: 2rem;
+      color: #00dfc4;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #00dfc4;
+      padding-bottom: 8px;
+      letter-spacing: 0.15em;
+    }
+
+    /* Layout campi affiancati */
+    fieldset .inputBox {
+      width: 30%;
+      min-width: 180px;
+      margin-right: 3%;
+      display: inline-block;
+      position: relative;
+      vertical-align: top;
+    }
+    fieldset .inputBox:last-child {
+      margin-right: 0;
+    }
+    .back-arrow {
+      position: absolute;
+      top: 120px; /* o regola in base alla navbar */
+      left: 50px;
+      display: flex;
+      align-items: center;
+      background-color: #00dfc4;
+      color: #223243;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 20px 12px;
+      border-radius: 30px;
+      transition: width 0.3s ease, background 0.3s ease;
+      overflow: hidden;
+      width: 45px;
+      height: 45px;
+      white-space: nowrap;
+      box-shadow: 0 0 10px rgba(0, 223, 196, 0.5);
+      position: fixed;
+    }
+
+    .back-arrow i {
+      font-size: 18px;
+      margin-right: 8px;
+      transition: transform 0.3s ease;
+    }
+
+    .back-arrow span {
+      opacity: 0;
+      max-width: 0;
+      transition: opacity 0.3s ease, max-width 0.3s ease;
+      overflow: hidden;
+    }
+
+    .back-arrow:hover {
+      width: 180px;
+      background-color: #00bfa1;
+    }
+
+    .back-arrow:hover span {
+      opacity: 1;
+      max-width: 200px;
+    }
+    /* Stile per la pallina quando è selezionata */
+.car-card input[type="checkbox"]:checked ~ .custom-checkbox {
+    background-color: #00dfc4;
+    border-color: #00dfc4;
+}
+  </style>
+</head>
+<body>
+
+  <!-- Navbar esatta come la tua -->
+  <nav>
+    <div class="nav-wrapper">
+      <button class="hamburger" id="hamburger">&#9776;</button>
+      <ul class="nav-links" id="navLinks">
+        <li class="li"><a id="link" href="index.html">HOME</a></li>
+        <li class="li"><a id="link" class="active" href="noleggio.html">NOLEGGIO</a></li>
+        <li class="li"><a id="link" href="info.html">INFO</a></li>
+        <li class="li"><a id="link" href="signup.html">REGISTRATI</a></li>
+      </ul>
+    </div>
+  </nav>
+  <br><br>
+  <a href="javascript:history.back()" class="back-arrow">
+    <i class="fa-solid fa-arrow-left"></i>
+    <span>Torna indietro</span>
+  </a> 
+
+  <main>
+   
+    <h1>Modulo Noleggio Auto</h1>
+
+    <form action="noleggio.html" method="post">
+
+      <fieldset>
+        <legend>Informazioni Personali</legend>
+
+        <div class="inputBox">
+          <input id="nome"  name="nome" type="text" required />
+          <span>Nome</span>
+          <small id="nomeError" style="color: red; display:none;">Il nome può contenere solo lettere e spazi.</small>
+        </div>
+
+        <div class="inputBox">
+          <input id="cognome" name="cognome" type="text" required />
+          <span>Cognome</span>
+          <small id="cognomeError" style="color: red; display:none;">Il cognome può contenere solo lettere e spazi.</small>
+        </div>
+
+        <div class="inputBox">
+          <input id="email" name="email" type="email" required />
+          <span>Email</span>
+          <small id="emailError" style="color: red; display:none;">Email non valida.</small>
+        </div>
+
+        <div class="inputBox">
+          <input id="telefono" name="telefono" type="text" required />
+          <span>Telefono</span>
+          <small id="telefonoError" style="color: red; display:none;">Il telefono deve contenere solo numeri.</small>
+        </div>
+
+        <div class="inputBox">
+          <input id="data" name="data" type="date" required />
+          <span>Data di nascita</span>
+          <small id="dataError" style="color: red; display:none;">La data non può essere futura.</small>
+        </div>
+
+        <div class="inputBox">
+          <select id="patente" name="patente" required>
+            <option value="">Seleziona patente</option>
+            <option value="A">Patente A</option>
+            <option value="B">Patente B</option>
+            <option value="C">Patente C</option>
+          </select>
+          <span>Patente</span>
+          <small id="patenteError" style="color: red; display:none;">Con la patente A non puoi guidare la macchina.</small>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Periodo Noleggio</legend>
+
+        <div class="inputBox">
+          <input id="dataPartenza" name="dataPartenza" type="date" required />
+          <span>Data Partenza</span>
+          <small id="dataPartenzaError" style="color: red; display:none;">Inserisci una data di partenza valida.</small>
+        </div>
+
+        <div class="inputBox">
+          <input id="dataArrivo" name="dataArrivo" type="date" required />
+          <span>Data Arrivo</span>
+          <small id="dataArrivoError" style="color: red; display:none;">La data di arrivo deve essere dopo la data di partenza.</small>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Seleziona Auto da Noleggiare</legend>
+
+        <!-- Berline Premium -->
+        <div class="category-section">
+          <h2>Berline Premium</h2>
+          <div class="cars-categories">
+            <div class="car-card">
+              <input type="checkbox" id="berline1" name="auto_scelta[]" value="Audi A6 C7" />
+              <label for="berline1">
+                AUDI A6 C7
+                <span class="custom-checkbox"></span>
+              </label>
+            </div>
+            <div class="car-card">
+              <input type="checkbox" id="berline2" name="auto_scelta[]" value="BMW M5 COMPETITION" />
+              <label for="berline2">
+                BMW M5 COMPETITION
+                <span class="custom-checkbox"></span>
+              </label>
+            </div>
+            <div class="car-card">
+              <input type="checkbox" id="berline3" name="auto_scelta[]" value="Mercedes Classe E" />
+              <label for="berline3">
+                Mercedes Classe E
+                <span class="custom-checkbox"></span>
+              </label>
+            </div>
+            <div class="car-card">
+              <input type="checkbox" id="berline4" name="auto_scelta[]" value="BMW M5 TOURING" />
+              <label for="berline4">
+                BMW M5 TOURING
+                <span class="custom-checkbox"></span>
+              </label>
+            </div>
+            <div class="car-card">
+              <input type="checkbox" id="berline5" name="auto_scelta[]" value="AUDI RS6 AVANT" />
+              <label for="berline5">
+                AUDI RS6 AVANT
+                <span class="custom-checkbox"></span>
+              </label>
+            </div>
+            <div class="car-card">
+              <input type="checkbox" id="berline6" name="auto_scelta[]" value="MERCEDES E400" />
+              <label for="berline6">
+                MERCEDES E400
+                <span class="custom-checkbox"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- SUV di Lusso -->
+        <div class="category-section">
+          <h2>SUV di Lusso</h2>
+          <div class="cars-categories">
+            <div class="car-card">
+              <input type="checkbox" id="suv1" name="auto_scelta[]" value="RANGE ROVER SPORT" />
+              <label for="suv1">
+                RANGE ROVER SPORT
+                <span class="custom-checkbox"></span>
+              </label>
+            </div>
+            <div class="car-card">
+              <input type="checkbox" id="suv2" name="auto_scelta[]" value="MERCEDES G63 AMG" />
+              <label for="suv2">
+                MERCEDES G63 AMG
+                <span class="custom-checkbox"></span>
+              </label>
+            </div>
+            <div class="car-card">
+              <input type="checkbox" id="suv3" name="auto_scelta[]" value="BMW X7" />
+              <label for="suv3">
+                BMW X7
+                <span class="custom-checkbox"></span>
+              </label>
+            </div>
+            <div class="car-card">
+              <input type="checkbox" id="suv4" name="auto_scelta[]" value="AUDI Q8" />
+              <label for="suv4">
+                AUDI Q8
+                <span class="custom-checkbox"></span>
+              </label>
+            </div>
+            <div class="car-card">
+              <input type="checkbox" id="suv5" name="auto_scelta[]" value="PORSCHE CAYENNE" />
+              <label for="suv5">
+                PORSCHE CAYENNE
+                <span class="custom-checkbox"></span>
+              </label>
+            </div>
+            <div class="car-card">
+              <input type="checkbox" id="suv6" name="auto_scelta[]" value="LAMBORGHINI URUS" />
+              <label for="suv6">
+                LAMBORGHINI URUS
+                <span class="custom-checkbox"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Supercar -->
+        <div class="category-section">
+          <h2>Supercar</h2>
+          <div class="cars-categories">
+            <div class="car-card">
+              <input type="checkbox" id="supercar1" name="auto_scelta[]" value="BUGATTI CHIRON" />
+              <label for="supercar1">
+                BUGATTI CHIRON
+                <span class="custom-checkbox"></span>
+              </label>
+            </div>
+            <div class="car-card">
+              <input type="checkbox" id="supercar2" name="auto_scelta[]" value="FERRARI 488 GTB" />
+              <label for="supercar2">
+                FERRARI 488 GTB
+                <span class="custom-checkbox"></span>
+              </label>
+            </div>
+            <div class="car-card">
+              <input type="checkbox" id="supercar3" name="auto_scelta[]" value="PORSCHE 911 TURBO S" />
+              <label for="supercar3">
+                PORSCHE 911 TURBO S
+                <span class="custom-checkbox"></span>
+              </label>
+            </div>
+            <div class="car-card">
+              <input type="checkbox" id="supercar4" name="auto_scelta[]" value="MCLAREN 720S" />
+              <label for="supercar4">
+                MCLAREN 720S
+                <span class="custom-checkbox"></span>
+              </label>
+            </div>
+            <div class="car-card">
+              <input type="checkbox" id="supercar5" name="auto_scelta[]" value="ASTON MARTIN DB11" />
+              <label for="supercar5">
+                ASTON MARTIN DB11
+                <span class="custom-checkbox"></span>
+              </label>
+            </div>
+            <div class="car-card">
+              <input type="checkbox" id="supercar6" name="auto_scelta[]" value="LAMBORGHINI AVENTADOR" />
+              <label for="supercar6">
+                LAMBORGHINI AVENTADOR
+                <span class="custom-checkbox"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cabrio/Roadster -->
+        <div class="category-section">
+          <h2>ELETTRICHE SPORTIVE</h2>
+          <div class="cars-categories">
+            <div class="car-card">
+              <input type="checkbox" id="cabrio1" name="auto_scelta[]" value="TESLA ROADSTER" />
+              <label for="cabrio1">
+                TESLA ROADSTER
+                <span class="custom-checkbox"></span>
+              </label>
+            </div>
+            <div class="car-card">
+              <input type="checkbox" id="cabrio2" name="auto_scelta[]" value="RIMAC NEVERA" />
+              <label for="cabrio2">
+                RIMAC NEVERA
+                <span class="custom-checkbox"></span>
+              </label>
+            </div>
+            <div class="car-card">
+              <input type="checkbox" id="cabrio3" name="auto_scelta[]" value="LOTUS ELETRE" />
+              <label for="cabrio3">
+                LOTUS ELETRE
+                <span class="custom-checkbox"></span>
+              </label>
+            </div>
+            <div class="car-card">
+              <input type="checkbox" id="cabrio4" name="auto_scelta[]" value="DRAKO GTE" />
+              <label for="cabrio4">
+                DRAKO GTE
+                <span class="custom-checkbox"></span>
+              </label>
+            </div>
+            <div class="car-card">
+              <input type="checkbox" id="cabrio5" name="auto_scelta[]" value="AUDI RS E-TRON GT" />
+              <label for="cabrio5">
+                AUDI RS E-TRON GT
+                <span class="custom-checkbox"></span>
+              </label>
+            </div>
+            <div class="car-card">
+              <input type="checkbox" id="cabrio6" name="auto_scelta[]" value="LOTUS EVJA" />
+              <label for="cabrio6">
+                LOTUS EVJA
+                <span class="custom-checkbox"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+
+      <input type="submit" value="Richiedi Noleggio" />
+    </form>
+  </main>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const hamburger = document.getElementById("hamburger");
+      const navLinks = document.getElementById("navLinks");
+      const links = document.querySelectorAll("nav a");
+
+      // Crea elemento per la transizione
+      const transitionElement = document.createElement('div');
+      transitionElement.className = 'page-transition';
+      document.body.appendChild(transitionElement);
+
+      // Menu mobile
+      if (window.innerWidth <= 768) {
+        navLinks.classList.remove("active");
+      }
+
+      hamburger.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+      });
+
+      // Gestione click sui link
+      links.forEach(link => {
+        link.addEventListener("click", function(e) {
+          if (this.target === '_blank') return;
+
+          if (this.getAttribute('href').startsWith('#')) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) target.scrollIntoView({ behavior: 'smooth' });
+            return;
+          }
+
+          if (this.href !== window.location.href) {
+            e.preventDefault();
+            transitionElement.style.display = 'block';
+            transitionElement.classList.remove('slide-in');
+
+            requestAnimationFrame(() => {
+              transitionElement.classList.add('slide-out');
+
+              setTimeout(() => {
+                window.location.href = link.getAttribute('href');
+              }, 800);
+            });
+          }
+        });
+      });
+
+      // Resize handler
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 768) {
+          navLinks.classList.remove("active");
+        }
+      });
+
+      // Animazione di entrata
+      setTimeout(() => {
+        transitionElement.style.display = 'block';
+        transitionElement.classList.remove('slide-out');
+        transitionElement.classList.add('slide-in');
+
+        setTimeout(() => {
+          transitionElement.style.display = 'none';
+        }, 1200);
+      }, 50);
+
+      // 🔐 Gestione toggle password (multipli)
+      function setupPasswordToggle(inputId, iconId) {
+        const input = document.getElementById(inputId);
+        const icon = document.getElementById(iconId);
+        if (input && icon) {
+          icon.addEventListener("click", () => {
+            const isVisible = input.type === "text";
+            input.type = isVisible ? "password" : "text";
+            icon.classList.toggle("fa-lock", isVisible);
+            icon.classList.toggle("fa-lock-open", !isVisible);
+          });
+        }
+      }
+      setupPasswordToggle("password", "togglePassword");
+      setupPasswordToggle("confirmPassword", "toggleConfirmPassword");
+
+      // VALIDAZIONE FORM
+
+      // Nome e Cognome: solo lettere e spazi
+      const nomeInput = document.getElementById('nome');
+      const nomeError = document.getElementById('nomeError');
+      if (nomeInput && nomeError) {
+        nomeInput.addEventListener('input', () => {
+          const pattern = /^[a-zA-Z\s]+$/;
+          if (!pattern.test(nomeInput.value)) {
+            nomeInput.classList.add('invalid');
+            nomeError.style.display = 'block';
+          } else {
+            nomeInput.classList.remove('invalid');
+            nomeError.style.display = 'none';
+          }
+        });
+      }
+
+      const cognomeInput = document.getElementById('cognome');
+      const cognomeError = document.getElementById('cognomeError');
+      if (cognomeInput && cognomeError) {
+        cognomeInput.addEventListener('input', () => {
+          const pattern = /^[a-zA-Z\s]+$/;
+          if (!pattern.test(cognomeInput.value)) {
+            cognomeInput.classList.add('invalid');
+            cognomeError.style.display = 'block';
+          } else {
+            cognomeInput.classList.remove('invalid');
+            cognomeError.style.display = 'none';
+          }
+        });
+      }
+
+      // Username: solo lettere e numeri
+      const usernameInput = document.getElementById('username');
+      const usernameError = document.getElementById('usernameError');
+      if (usernameInput && usernameError) {
+        usernameInput.addEventListener('input', () => {
+          const pattern = /^[a-zA-Z0-9]*$/;
+          if (!pattern.test(usernameInput.value)) {
+            usernameInput.classList.add('invalid');
+            usernameError.style.display = 'block';
+          } else {
+            usernameInput.classList.remove('invalid');
+            usernameError.style.display = 'none';
+          }
+        });
+      }
+
+      // Email
+      const emailInput = document.getElementById('email');
+      const emailError = document.getElementById('emailError');
+      if (emailInput && emailError) {
+        emailInput.addEventListener('input', () => {
+          const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!pattern.test(emailInput.value)) {
+            emailInput.classList.add('invalid');
+            emailError.style.display = 'block';
+          } else {
+            emailInput.classList.remove('invalid');
+            emailError.style.display = 'none';
+          }
+        });
+      }
+
+      // Telefono: solo numeri
+      const telefonoInput = document.getElementById('telefono');
+      const telefonoError = document.getElementById('telefonoError');
+      if (telefonoInput && telefonoError) {
+        telefonoInput.addEventListener('input', () => {
+          const pattern = /^[0-9]*$/;
+          if (!pattern.test(telefonoInput.value)) {
+            telefonoInput.classList.add('invalid');
+            telefonoError.style.display = 'block';
+          } else {
+            telefonoInput.classList.remove('invalid');
+            telefonoError.style.display = 'none';
+          }
+        });
+      }
+
+      // VALIDAZIONE DATE
+
+      // Prima data: non futura, non più vecchia di 21 anni
+      const primaDataInput = document.getElementById('primaData');
+      const primaDataError = document.getElementById('primaDataError');
+      if (primaDataInput && primaDataError) {
+        primaDataInput.addEventListener('change', () => {
+          const today = new Date();
+          const inputDate = new Date(primaDataInput.value);
+          const twentyOneYearsAgo = new Date(today);
+          twentyOneYearsAgo.setFullYear(today.getFullYear() - 21);
+
+          if (inputDate > today || inputDate < twentyOneYearsAgo) {
+            primaDataInput.classList.add('invalid');
+            primaDataError.style.display = 'block';
+          } else {
+            primaDataInput.classList.remove('invalid');
+            primaDataError.style.display = 'none';
+          }
+        });
+      }
+
+      // Data partenza e data arrivo: da oggi a +1 anno
+      const dataPartenzaInput = document.getElementById('dataPartenza');
+      const dataArrivoInput = document.getElementById('dataArrivo');
+      const dataPartenzaError = document.getElementById('dataPartenzaError');
+      const dataArrivoError = document.getElementById('dataArrivoError');
+
+      function validateDataRange(input, error) {
+        const today = new Date();
+        const oneYearAhead = new Date(today);
+        oneYearAhead.setFullYear(today.getFullYear() + 1);
+        const inputDate = new Date(input.value);
+
+        if (inputDate < today || inputDate > oneYearAhead) {
+          input.classList.add('invalid');
+          error.style.display = 'block';
+        } else {
+          input.classList.remove('invalid');
+          error.style.display = 'none';
+        }
+      }
+
+      if (dataPartenzaInput && dataPartenzaError) {
+        dataPartenzaInput.addEventListener('change', () => {
+          validateDataRange(dataPartenzaInput, dataPartenzaError);
+        });
+      }
+
+      if (dataArrivoInput && dataArrivoError) {
+        dataArrivoInput.addEventListener('change', () => {
+          validateDataRange(dataArrivoInput, dataArrivoError);
+        });
+      }
+
+      // Patente: errore se selezionato "A"
+      const patenteSelect = document.getElementById('patente');
+      const patenteError = document.getElementById('patenteError');
+      if (patenteSelect && patenteError) {
+        patenteSelect.addEventListener('change', () => {
+          if (patenteSelect.value === 'A') {
+            patenteSelect.classList.add('invalid');
+            patenteError.style.display = 'block';
+          } else {
+            patenteSelect.classList.remove('invalid');
+            patenteError.style.display = 'none';
+          }
+        });
+      }
+
+      // Password e conferma password
+      const passwordInput = document.getElementById('password');
+      const confirmPasswordInput = document.getElementById('confirmPassword');
+      const passwordError = document.getElementById('passwordError');
+      const confirmPasswordError = document.getElementById('confirmPasswordError');
+
+      function validatePasswordFields() {
+        const password = passwordInput.value;
+        const confirmPassword = confirmPasswordInput.value;
+
+        if (password.length < 8) {
+          passwordInput.classList.add('invalid');
+          passwordError.style.display = 'block';
+        } else {
+          passwordInput.classList.remove('invalid');
+          passwordError.style.display = 'none';
+        }
+
+        if (confirmPassword !== password && confirmPassword !== '') {
+          confirmPasswordInput.classList.add('invalid');
+          confirmPasswordError.style.display = 'block';
+        } else {
+          confirmPasswordInput.classList.remove('invalid');
+          confirmPasswordError.style.display = 'none';
+        }
+      }
+
+      if (passwordInput && confirmPasswordInput) {
+        passwordInput.addEventListener('input', validatePasswordFields);
+        confirmPasswordInput.addEventListener('input', validatePasswordFields);
+      }
+
+      // Gestione checkbox auto
+      document.querySelectorAll('.car-card input[type="checkbox"]').forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+          // Aggiungi/rimuovi la classe 'selected' alla card corrente
+          this.closest('.car-card').classList.toggle('selected', this.checked);
+        });
+        
+        // Assicurati che lo stato iniziale sia corretto
+        if(checkbox.checked) {
+          checkbox.closest('.car-card').classList.add('selected');
+        }
+      });
+    });
+    // Validazione data di nascita (non futura e almeno 21 anni)
+const dataInput = document.getElementById('data');
+const dataError = document.getElementById('dataError');
+
+function validateBirthdate() {
+    const today = new Date();
+    const birthDate = new Date(dataInput.value);
+    const minAgeDate = new Date();
+    minAgeDate.setFullYear(today.getFullYear() - 21);
+    
+    if (!dataInput.value) {
+        dataError.textContent = 'Inserisci una data di nascita';
+        dataError.style.display = 'block';
+        dataInput.classList.add('invalid');
+        return false;
+    }
+    
+    if (birthDate > today) {
+        dataError.textContent = 'La data di nascita non è valida';
+        dataError.style.display = 'block';
+        dataInput.classList.add('invalid');
+        return false;
+    }
+    
+    if (birthDate > minAgeDate) {
+        dataError.textContent = 'Devi avere almeno 21 anni per noleggiare';
+        dataError.style.display = 'block';
+        dataInput.classList.add('invalid');
+        return false;
+    }
+    
+    dataError.style.display = 'none';
+    dataInput.classList.remove('invalid');
+    return true;
+}
+
+// Aggiungi l'event listener per la validazione
+if (dataInput && dataError) {
+    dataInput.addEventListener('change', validateBirthdate);
+}
+
+// Modifica l'event listener del form submit per includere la validazione della data
+document.querySelector('form').addEventListener('submit', function(e) {
+    // ... altro codice di validazione esistente ...
+    
+    // Aggiungi la validazione della data di nascita
+    if (!validateBirthdate()) {
+        e.preventDefault();
+    }
+    
+    // ... eventuale altro codice ...
+});
+  </script>
+</body>
+</html>

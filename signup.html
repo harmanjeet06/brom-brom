@@ -1,0 +1,429 @@
+
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BRUM BRUM</title>
+  
+  <link rel="stylesheet" href="nav.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap&text=homeblgwrkaut" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="icon" href="sedan.png">
+ <script>
+document.addEventListener('DOMContentLoaded', function() {
+  const form = document.querySelector('form');
+  const passwordInput = document.getElementById('password');
+  const confirmPasswordInput = document.getElementById('confirmPassword');
+  const emailInput = document.getElementById('email');
+  const usernameInput = document.getElementById('username');
+  const togglePassword = document.getElementById('togglePassword');
+  const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
+  const birthdateInput = document.querySelector('input[name="birthdate"]');
+  
+  // Aggiungiamo un elemento per l'errore della data di nascita
+  const birthdateError = document.createElement('div');
+  birthdateError.id = 'birthdateError';
+  birthdateError.className = 'error-msg';
+  birthdateError.textContent = 'La data di nascita non è valida';
+  birthdateInput.parentNode.insertBefore(birthdateError, birthdateInput.nextSibling);
+
+  // Mostra/nascondi password
+  [togglePassword, toggleConfirmPassword].forEach(icon => {
+    icon.addEventListener('click', function() {
+      const input = this.parentElement.querySelector('input');
+      if (input.type === 'password') {
+        input.type = 'text';
+        this.classList.remove('fa-lock');
+        this.classList.add('fa-unlock');
+      } else {
+        input.type = 'password';
+        this.classList.remove('fa-unlock');
+        this.classList.add('fa-lock');
+      }
+    });
+  });
+
+  // Funzione per validare la data di nascita
+  function validateBirthdate() {
+    const selectedDate = new Date(birthdateInput.value);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Reset ore per confronto solo con la data
+    
+    if (selectedDate > today) {
+      birthdateError.style.display = 'block';
+      birthdateInput.classList.add('invalid');
+      return false;
+    } else {
+      birthdateError.style.display = 'none';
+      birthdateInput.classList.remove('invalid');
+      return true;
+    }
+  }
+
+  // Validazione al submit
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    let isValid = true;
+    
+    // Validazione username
+    const usernameRegex = /^[a-zA-Z0-9]+$/;
+    if (!usernameRegex.test(usernameInput.value)) {
+      document.getElementById('usernameError').style.display = 'block';
+      usernameInput.classList.add('invalid');
+      isValid = false;
+    } else {
+      document.getElementById('usernameError').style.display = 'none';
+      usernameInput.classList.remove('invalid');
+    }
+    
+    // Validazione email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(emailInput.value)) {
+      document.getElementById('emailError').style.display = 'block';
+      emailInput.classList.add('invalid');
+      isValid = false;
+    } else {
+      document.getElementById('emailError').style.display = 'none';
+      emailInput.classList.remove('invalid');
+    }
+    
+    // Validazione password
+    if (passwordInput.value.length < 8) {
+      document.getElementById('passwordError').style.display = 'block';
+      passwordInput.classList.add('invalid');
+      isValid = false;
+    } else {
+      document.getElementById('passwordError').style.display = 'none';
+      passwordInput.classList.remove('invalid');
+    }
+    
+    // Validazione conferma password
+    if (passwordInput.value !== confirmPasswordInput.value) {
+      document.getElementById('confirmPasswordError').style.display = 'block';
+      confirmPasswordInput.classList.add('invalid');
+      isValid = false;
+    } else {
+      document.getElementById('confirmPasswordError').style.display = 'none';
+      confirmPasswordInput.classList.remove('invalid');
+    }
+    
+    // Validazione data di nascita
+    if (!validateBirthdate()) {
+      isValid = false;
+    }
+    
+    // Se tutto è valido, invia il form
+    if (isValid) {
+      this.submit();
+    }
+  });
+  
+  // Validazione in tempo reale per la data di nascita
+  birthdateInput.addEventListener('change', validateBirthdate);
+  
+  // Validazione in tempo reale per gli altri campi
+  usernameInput.addEventListener('input', function() {
+    const usernameRegex = /^[a-zA-Z0-9]+$/;
+    if (!usernameRegex.test(this.value)) {
+      document.getElementById('usernameError').style.display = 'block';
+      this.classList.add('invalid');
+    } else {
+      document.getElementById('usernameError').style.display = 'none';
+      this.classList.remove('invalid');
+    }
+  });
+  
+  emailInput.addEventListener('input', function() {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(this.value)) {
+      document.getElementById('emailError').style.display = 'block';
+      this.classList.add('invalid');
+    } else {
+      document.getElementById('emailError').style.display = 'none';
+      this.classList.remove('invalid');
+    }
+  });
+  
+  passwordInput.addEventListener('input', function() {
+    if (this.value.length < 8) {
+      document.getElementById('passwordError').style.display = 'block';
+      this.classList.add('invalid');
+    } else {
+      document.getElementById('passwordError').style.display = 'none';
+      this.classList.remove('invalid');
+    }
+    
+    // Aggiorna anche la validazione della conferma password
+    if (this.value !== confirmPasswordInput.value) {
+      document.getElementById('confirmPasswordError').style.display = 'block';
+      confirmPasswordInput.classList.add('invalid');
+    } else {
+      document.getElementById('confirmPasswordError').style.display = 'none';
+      confirmPasswordInput.classList.remove('invalid');
+    }
+  });
+  
+  confirmPasswordInput.addEventListener('input', function() {
+    if (passwordInput.value !== this.value) {
+      document.getElementById('confirmPasswordError').style.display = 'block';
+      this.classList.add('invalid');
+    } else {
+      document.getElementById('confirmPasswordError').style.display = 'none';
+      this.classList.remove('invalid');
+    }
+  });
+});
+</script>
+  <style>
+    /* Animazione delle macchine */
+    body {
+      background: linear-gradient(to bottom, #1a2a3a, #223243);
+      overflow-x: hidden;
+    }
+    
+    *{
+      margin: 0;
+      font-family: "Orbitron", sans-serif;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+    .body{
+      padding-top: 5%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: transparent;
+    }
+    .container{
+      z-index: 2;
+      padding: 40px;
+      border-radius: 20px;
+      border: 8px solid #223243;
+      box-shadow: -5px -5px 15px rgba(255, 255, 255, 0.1),
+                  5px 5px 15px rgba(0,0,0,0.35),
+                  inset -5px -5px 15px rgba(255, 255, 255, 0.1),
+                  inset 5px 5px 15px rgba(0,0,0,0.35);
+      background: rgba(34, 50, 67, 0.8);
+    }
+    .container .form{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    /* Nuovo: stile per il form */
+    .form-content {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .container .form h2{
+      color:  #fff;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+    }
+    .container .form .inputBox{
+      position: relative;
+      width: 300px;
+      margin-bottom: 20px;
+    }
+    .container .form .inputBox input{
+      padding: 12px 10px 12px 48px; 
+      border: none;
+      width: 100%;
+      background: #223243;
+      border: 1px solid rgba(0,0,0,0.1);
+      color: #fff;
+      font-weight: 300;
+      border-radius: 25px;
+      font-size: 1em;
+      box-shadow: -5px -5px 15px rgba(255,255,255,0.1), 5px 5px 15px rgba(0,0,0,0.35);
+      transition: 0.5s;
+      outline: none;
+    }
+    .container .form .inputBox span{
+      position: absolute;
+      left: 0;
+      padding: 13px 10px 12px 48px;
+      pointer-events: none;
+      font-size: 1em;
+      font-weight: 300;
+      transition: 0.5s;
+      letter-spacing: 0.05em;
+      color: rgba(255, 255, 255, 0.5);
+    }
+    .container .form .inputBox input:valid ~ span,
+    .container .form .inputBox input:focus ~ span {
+      color: #00dfc4;
+      border: 1px solid #00dfc4;
+      background: #223243;
+      transform: translateX(25px) translateY(-7px);
+      font-size: 0.6em;
+      padding: 0 8px;
+      border-radius: 10px;
+      letter-spacing: 0.1em;
+    }
+    .container .form .inputBox input:valid,
+    .container .form .inputBox input:focus {
+      border: 1px solid #00dfc4;
+    }
+    .container .form .inputBox i{
+      position: absolute;
+      top: 15px;
+      left: 16px;
+      width: 25px;
+      padding: 2px 0;
+      padding-right: 8px;
+      color: #00dfc4;
+      border-right: 1px solid #00dfc4;
+    }
+    .container .form .inputBox input[type="submit"] {
+      background: #00dfc4;
+      color: #223243;
+      padding: 10px 0;
+      font-weight: 500;
+      cursor: pointer;
+      box-shadow: -5px -5px 15px rgba(255, 255, 255, 0.1),
+                   5px 5px 15px rgba(0,0,0,0.35),
+                   inset -5px -5px 15px rgba(255, 255, 255, 0.1),
+                   inset 5px 5px 15px rgba(0,0,0,0.35);
+    }
+    .container .form p {
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.75em;
+      font-weight: 300;
+    }
+    .container .form p a {
+      font-weight: 500;
+      color: #fff;
+    }
+    .container .form .inputBox:hover input {
+        border: 1px solid #00dfc4;
+        box-shadow: 0 0 10px #00dfc4;
+    }
+
+    .container .form .inputBox:hover i {
+        color: #00dfc4;
+        text-shadow: 0 0 10px #00dfc4;
+    }
+    .container {
+        /* ... stili esistenti ... */
+        border: 8px solid #223243; /* Bordo invariato */
+        box-shadow: 
+            -5px -5px 15px rgba(255, 255, 255, 0.1),
+            5px 5px 15px rgba(0, 0, 0, 0.35),
+            inset -5px -5px 15px rgba(255, 255, 255, 0.1),
+            inset 5px 5px 15px rgba(0, 0, 0, 0.35);
+        transition: all 0.3s ease;
+    }
+    .container:hover {
+        box-shadow: 
+            -5px -5px 15px rgba(255, 255, 255, 0.1),
+            5px 5px 15px rgba(0, 0, 0, 0.35),
+            inset -5px -5px 15px rgba(255, 255, 255, 0.1),
+            inset 5px 5px 15px rgba(0, 0, 0, 0.35),
+            0 0 25px #00dfc4,
+            0 0 40px rgba(0, 223, 196, 0.4); /* Doppio glow per più intensità */
+    }
+    .error-msg {
+      color: red;
+      font-size: 0.8rem;
+      margin-top: 5px;
+      display: none;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+    .inputBox .invalid {
+      border: 2px solid red;
+    }
+
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-wrapper">
+      <button class="hamburger" id="hamburger">&#9776;</button>
+      <ul class="nav-links" id="navLinks">
+        <li class="li"><a id="link" href="index.html">HOME</a></li>
+        <li class="li"><a id="link" href="noleggio.html">NOLEGGIO</a></li>
+        <li class="li"><a id="link" class="active" href="#">REGISTRATI</a></li>
+        <li class="li"><a id="link" href="login.html">LOG IN</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="body">
+    
+    <div class="container">
+      <div class="form signup">
+        <h2>REGISTRATI</h2>
+        <form action="login.html" method="post">
+        <div class="inputBox">
+          <input type="text" name="username" id="username" required>
+            <i class="fa-solid fa-user"></i>
+            <span>Username</span>
+          <div id="usernameError" class="error-msg">Username non valido (niente simboli speciali)</div>
+        </div>
+        <div class="inputBox">
+          <input type="email" required="required" name="email" id="email">
+            <i class="fa-solid fa-envelope"></i>
+            <span>Email</span>
+          <div id="emailError" class="error-msg">Inserisci una email valida</div>
+      </div>
+       <div class="inputBox">
+        <input type="password" required="required" name="password" id="password">
+          <i class="fa-solid fa-lock" id="togglePassword" style="cursor: pointer;"></i>
+          <span>Crea password</span>
+        <div id="passwordError" class="error-msg">La password deve contenere almeno 8 caratteri</div>
+      </div>
+        <div class="inputBox">
+          <input type="password" required="required" name="confirm_password" id="confirmPassword">
+            <i class="fa-solid fa-lock" id="toggleConfirmPassword" style="cursor: pointer;"></i>
+            <span>Conferma password</span>
+        <div id="confirmPasswordError" class="error-msg">Le password non corrispondono</div>
+      </div>
+
+
+        <div class="inputBox">
+          <input type="text" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'" required="required" name="birthdate">
+          <i class="fa-solid fa-calendar"></i>
+          <span>Data di nascita</span>
+        </div>
+
+        <div class="inputBox">
+          <input type="text" required="required" name="address">
+          <i class="fa-solid fa-house"></i>
+          <span>Indirizzo (Via)</span>
+        </div>
+
+        <div class="inputBox">
+          <input type="text" required="required" name="cap">
+          <i class="fa-solid fa-building-un"></i>
+          <span>C.A.P.</span>
+        </div>
+
+        <div class="inputBox">
+          <input type="text" required="required" name="city">
+          <i class="fa-solid fa-city"></i>
+          <span>Città</span>
+        </div>
+
+        <div class="inputBox">
+          <input type="submit" value="Crea Account">
+        </div>
+        </form>
+        <p>Hai già un Account? <a href="login.html" class="login">Log In</a></p>
+      </div>
+    </div>
+  </div>
+<script src="script.js"></script>
+</body>
+</html>

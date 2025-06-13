@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BRUM BRUM</title>
+  
+  <link rel="stylesheet" href="nav.css">
+  <link rel="stylesheet" href="noleggio.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap&text=homeblgwrkaut" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+  <link rel="icon" href="sedan.png" />
+  
+  <script src="script.js"></script>
+  <style>
+    body {
+      font-family: 'Itim', cursive;
+      color: #333;
+      margin: 0;
+      background: none;
+      line-height: 1.6;
+    }
+    h1, h2, h3 {
+      font-family: 'Orbitron', sans-serif;
+      color: #8E1616;
+      margin-top: 2em;
+    }
+    h1 {
+      margin-bottom: 0.5em;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 15px 0;
+      border-radius: 8px;
+    }
+    section {
+      max-width: 900px;
+      margin: 0 auto 3em;
+    }
+    p {
+      margin-bottom: 1.2em;
+      font-size: 1.1rem;
+    }
+    ul {
+      margin-left: 1.2em;
+      margin-bottom: 1.5em;
+    }
+    li {
+      margin-bottom: 0.5em;
+    }
+    a {
+      color: #8E1616;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .back-arrow {
+      position: absolute;
+      top: 120px; /* o regola in base alla navbar */
+      left: 50px;
+      display: flex;
+      align-items: center;
+      background-color: #00dfc4;
+      color: #223243;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 20px 12px;
+      border-radius: 30px;
+      transition: width 0.3s ease, background 0.3s ease;
+      overflow: hidden;
+      width: 45px;
+      height: 45px;
+      white-space: nowrap;
+      box-shadow: 0 0 10px rgba(0, 223, 196, 0.5);
+      position: fixed;
+    }
+
+    .back-arrow i {
+      font-size: 18px;
+      margin-right: 8px;
+      transition: transform 0.3s ease;
+    }
+
+    .back-arrow span {
+      opacity: 0;
+      max-width: 0;
+      transition: opacity 0.3s ease, max-width 0.3s ease;
+      overflow: hidden;
+      
+    }
+
+    .back-arrow:hover {
+      width: 180px;
+      background-color: #00bfa1;
+    }
+
+    .back-arrow:hover span {
+      opacity: 1;
+      max-width: 200px;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-wrapper">
+      <button class="hamburger" id="hamburger">&#9776;</button>
+      <ul class="nav-links" id="navLinks">
+        <li class="li"><a id="link" class="active" href="index.html">HOME</a></li>
+        <li class="li"><a id="link" href="noleggio.html">CATALOGO</a></li>
+        <li class="li"><a id="link" href="signup.html" target="_blank">REGISTRATI</a></li>
+        <li class="li"><a id="link" href="rent.html">NOLEGGIA</a></li>
+      </ul>
+    </div>
+  </nav>
+<a href="javascript:history.back()" class="back-arrow">
+    <i class="fa-solid fa-arrow-left"></i>
+    <span>Torna indietro</span>
+  </a> 
+  <section id="home">
+    <h1>Benvenuto su BRUM BRUM</h1>
+    <p>
+      Il tuo punto di riferimento per il noleggio di auto di lusso in Italia. Da decenni offriamo un servizio impeccabile 
+      per clienti esigenti che vogliono vivere un'esperienza esclusiva alla guida delle migliori vetture del mercato.
+    </p>
+    <img src="https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=900&q=80" alt="Auto di lusso" />
+  </section>
+
+  <section id="flotta">
+    <h2>La nostra flotta di auto di lusso</h2>
+    <p>
+      Scegli tra una vasta gamma di veicoli premium, dalle sportive più veloci ai SUV più eleganti, fino alle eleganti berline di alta classe.
+      Ogni auto è selezionata con cura e mantenuta in condizioni perfette per garantirti il massimo comfort e prestazioni.
+    </p>
+    <ul>
+      <li><strong>Supercar:</strong> Lamborghini, Ferrari, Porsche, McLaren - per chi cerca emozioni forti e prestazioni da pista.</li>
+      <li><strong>SUV di lusso:</strong> Range Rover, Bentley Bentayga, Mercedes GLS - perfetti per viaggi confortevoli con stile.</li>
+      <li><strong>Berline premium:</strong> BMW Serie 7, Audi A8, Mercedes Classe S - eleganza e tecnologia avanzata per ogni spostamento.</li>
+      <li><strong>Auto elettriche:</strong> Tesla Model S, Porsche Taycan, Audi e-tron GT - guida sostenibile senza rinunciare al lusso.</li>
+    </ul>
+    <img src="https://images.unsplash.com/photo-1549924231-f129b911e442?auto=format&fit=crop&w=900&q=80" alt="Varie auto di lusso" />
+  </section>
+
+  <section id="servizi">
+    <h2>Servizi inclusi nel noleggio</h2>
+    <p>
+      Offriamo servizi esclusivi per rendere il tuo noleggio un’esperienza unica e senza pensieri:
+    </p>
+    <ul>
+      <li><strong>Consegna e ritiro personalizzati:</strong> direttamente a casa tua o in aeroporto.</li>
+      <li><strong>Assistenza stradale 24/7:</strong> per garantire sicurezza e supporto immediato in ogni momento.</li>
+      <li><strong>Chauffeur professionale:</strong> disponibile su richiesta per un servizio completo e senza stress.</li>
+      <li><strong>Accessori aggiuntivi:</strong> seggiolini bambini, GPS premium, kit viaggio personalizzati.</li>
+    </ul>
+  </section>
+
+  <section id="assicurazioni">
+    <h2>Assicurazioni e garanzie</h2>
+    <p>
+      La sicurezza è la nostra priorità. Tutte le nostre auto sono coperte da polizze assicurative comprehensive, 
+      che includono:
+    </p>
+    <ul>
+      <li>Responsabilità civile fino a 10 milioni di euro.</li>
+      <li>Copertura danni accidentali con franchigia ridotta.</li>
+      <li>Assicurazione furto e incendio inclusa.</li>
+      <li>Protezione guidatore e passeggeri.</li>
+    </ul>
+    <p>
+      Offriamo inoltre la possibilità di estendere le coperture con assicurazioni aggiuntive per una maggiore tranquillità durante il noleggio.
+    </p>
+  </section>
+
+  <section id="prenotazione">
+    <h2>Come prenotare</h2>
+    <p>
+      Prenotare un'auto di lusso con BRUM BRUM è semplice e veloce:
+    </p>
+    <ol>
+      <li>Visita la nostra pagina <a href="noleggio.html">Noleggio</a> e scegli il modello che preferisci.</li>
+      <li>Compila il modulo di prenotazione con i tuoi dati e la durata del noleggio.</li>
+      <li>Seleziona eventuali servizi extra o assicurazioni aggiuntive.</li>
+      <li>Ricevi la conferma via email con tutti i dettagli e le istruzioni per il ritiro o la consegna.</li>
+    </ol>
+    <p>
+      Per assistenza personalizzata puoi contattare il nostro servizio clienti, sempre disponibile per rispondere a ogni tua domanda.
+    </p>
+  </section>
+
+  <section id="condizioni">
+    <h2>Termini e condizioni</h2>
+    <p>
+      Prima di procedere con il noleggio, è importante conoscere i nostri termini:
+    </p>
+    <ul>
+      <li>Età minima: 25 anni, con almeno 3 anni di patente.</li>
+      <li>Deposito cauzionale richiesto alla consegna.</li>
+      <li>Divieto di utilizzo per gare o attività non autorizzate.</li>
+      <li>Restituzione del veicolo con il pieno di carburante.</li>
+      <li>Penali per ritardi nella riconsegna o danni non coperti dall’assicurazione.</li>
+    </ul>
+  </section>
+
+  <section id="faq">
+    <h2>Domande frequenti (FAQ)</h2>
+    <h3>Quali documenti servono per noleggiare un'auto?</h3>
+    <p>Patente di guida valida, carta d’identità o passaporto, e una carta di credito a nome del conducente.</p>
+
+    <h3>È possibile noleggiare un'auto elettrica?</h3>
+    <p>Sì, disponiamo di una selezione di auto elettriche di lusso con autonomia estesa e ricarica rapida.</p>
+
+    <h3>Come funziona il servizio di consegna a domicilio?</h3>
+    <p>Consegniamo e ritiriamo l’auto presso l’indirizzo da te indicato, garantendo flessibilità e comodità.</p>
+
+    <h3>Cosa succede in caso di incidente?</h3>
+    <p>Contatta subito il nostro servizio clienti. La nostra assicurazione copre i danni secondo le condizioni stipulate.</p>
+  </section>
+
+  <footer style="text-align:center; margin: 3em 0;">
+    <p>© 2025 BRUM BRUM - Noleggio Auto di Lusso | Tutti i diritti riservati</p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
