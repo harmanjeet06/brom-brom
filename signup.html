@@ -345,6 +345,7 @@ document.addEventListener('DOMContentLoaded', function() {
     .inputBox .invalid {
       border: 2px solid red;
     }
+    
 
   </style>
 </head>
@@ -391,12 +392,12 @@ document.addEventListener('DOMContentLoaded', function() {
         <div id="confirmPasswordError" class="error-msg">Le password non corrispondono</div>
       </div>
 
-
-        <div class="inputBox">
-          <input type="text" onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'" required="required" name="birthdate">
-          <i class="fa-solid fa-calendar"></i>
-          <span>Data di nascita</span>
-        </div>
+          <div class="inputBox">
+            <input type="date" name="birthdate" id="birthdate">
+            <i class="fa-solid fa-calendar"></i>
+            <span>Data di nascita</span>
+            <div id="birthdateError" class="error-msg">La data di nascita non è valida</div>
+          </div>
 
         <div class="inputBox">
           <input type="text" required="required" name="address">
